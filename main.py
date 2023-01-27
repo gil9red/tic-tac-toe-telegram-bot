@@ -9,10 +9,10 @@ import os
 import re
 
 # pip install python-telegram-bot
-from telegram import (
-    Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
+from telegram.ext import (
+    MessageHandler, CommandHandler, Filters, CallbackQueryHandler, Updater, CallbackContext, Defaults
 )
-from telegram.ext import MessageHandler, CommandHandler, Filters, CallbackQueryHandler, Updater, CallbackContext, Defaults
 
 import config
 import logic
@@ -187,4 +187,3 @@ if __name__ == '__main__':
 
             log.info(f'Restarting the bot after {timeout} seconds')
             time.sleep(timeout)
-
