@@ -111,13 +111,15 @@ def on_callback_query(update: Update, context: CallbackContext):
     button.callback_data = fill_string_pattern(PATTERN_CELL, x, y, value)
 
     board[x][y] = value
+
     if logic.wins(board, logic.HUMAN):
         text = 'You win! 👍'
         query.message.edit_text(text, reply_markup=reply_markup)
         return
-
-    reply_markup = InlineKeyboardMarkup(inline_keyboard)
-    query.message.edit_reply_markup(reply_markup=reply_markup)
+    elif not logic.empty_cells(board):
+        text = 'Draw! 👍'
+        query.message.edit_text(text, reply_markup=reply_markup)
+        return
 
     query.message.edit_text('AI think...', reply_markup=reply_markup)
     time.sleep(1)
